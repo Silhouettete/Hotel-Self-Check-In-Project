@@ -1,49 +1,74 @@
+```mermaid
 flowchart TD
-    User([Guest])
-    Admin([Hotel System])
 
-    subgraph CheckIn["Check-In Process"]
-        A[Enter Homepage]
-        B{Already Logged In?}
-        C{Choose Check-in Method}
-        D[Enter Booking ID]
-        E[Login with Email]
-        F[View Reservations]
-        G[Select Room]
-    end
+%% ===== Actors =====
+User([Guest])
+Admin([Hotel System])
 
-    subgraph Verification["Guest Verification"]
-        H[Fill Check-in Form]
-        I[Enter Full Name / Phone / Email]
-        J[Upload Passport Photo]
-        K[Take Live Selfie]
-        L[Enter Credit Card Info]
-    end
+%% ===== Check-In Process =====
+subgraph CheckIn["Check-In Process"]
+    A[Enter Homepage]
+    B{Already Logged In?}
+    C{Choose Check-in Method}
+    D[Enter Booking ID]
+    E[Login with Email]
+    F[View Reservations]
+    G[Select Room]
+end
 
-    subgraph Completion["Confirmation"]
-        M[Validate Check-in]
-        N[Update Booking Status]
-        O[Generate Confirmation Slip]
-        P[Send Email Confirmation]
-    end
+%% ===== Verification =====
+subgraph Verification["Guest Verification"]
+    H[Fill Check-in Form]
+    I[Enter Full Name / Phone / Email]
+    J[Upload Passport Photo]
+    K[Take Live Selfie]
+    L[Enter Credit Card Info]
+end
 
-    User --> A
-    A --> B
-    B -- Yes --> F
-    B -- No --> C
-    C -- Booking ID --> D
-    C -- Email --> E
-    D --> F
-    E --> F
-    F --> G
-    G --> H
-    H --> I
-    I --> J
-    J --> K
-    K --> L
-    L --> M
-    M --> N
-    N --> O
-    O --> P
-    P --> Admin
-    N --> Admin
+%% ===== Completion =====
+subgraph Completion["Confirmation"]
+    M[Validate Check-in]
+    N[Update Booking Status]
+    O[Generate Confirmation Slip]
+    P[Send Email Confirmation]
+end
+
+%% ===== Flow =====
+User --> A
+A --> B
+B -- Yes --> F
+B -- No --> C
+C -- Booking ID --> D
+C -- Email --> E
+D --> F
+E --> F
+F --> G
+G --> H
+H --> I
+I --> J
+J --> K
+K --> L
+L --> M
+M --> N
+N --> O
+O --> P
+P --> Admin
+N --> Admin
+
+%% ===== Styling =====
+
+classDef actor fill:#1e3a8a,color:#ffffff,stroke:#1e40af,stroke-width:2px;
+classDef process fill:#e0f2fe,stroke:#0284c7,stroke-width:2px;
+classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px;
+classDef verification fill:#ede9fe,stroke:#7c3aed,stroke-width:2px;
+classDef completion fill:#dcfce7,stroke:#16a34a,stroke-width:2px;
+
+class User,Admin actor
+
+class A,F,G process
+class B,C decision
+
+class H,I,J,K,L verification
+
+class M,N,O,P completion
+```
