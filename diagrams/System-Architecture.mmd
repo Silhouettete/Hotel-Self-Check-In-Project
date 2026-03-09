@@ -1,56 +1,56 @@
 ```mermaid
 classDiagram
-    class User {
-        +Name : String
-        +PhoneNumber : int
-        +EmailAddress : String
+    User --> Reservation : makes
+    Reservation --> Room : reserves
+    Reservation --> API : uses
+    Reservation --> Verification : requires
+    Room --> Verification : linked to
+
+    class User{
+        +String Name
+        +int PhoneNumber
+        +String EmailAddress
         +LogIn()
         +CheckIn()
         +bookTheRoom()
     }
-    class Reservation {
-        +bookingID : String
-        +roomName : String
-        +roomNumber : int
-        +numberofGuest : int
-        +status : String
-        +paymentStatus : String
+    class Reservation{
+        +String bookingID
+        +String roomName
+        +int roomNumber
+        +int numberofGuest
+        +String status
+        +String paymentStatus
         +checkInReservation()
         +cancelReservation()
         +updateStatus()
         +validateCheckIn()
         +printReceipt()
     }
-    class Room {
-        +roomID : String
-        +roomType : String
-        +guestNumber : int
-        +availabilityStatus : String
-        +price : double
-        +bookingID : String
+    class Room{
+        +String roomID
+        +String roomType
+        +int guestNumber
+        +String availabilityStatus
+        +double price
+        +String bookingID
         +bookRoom()
         +updateAvailabilityStatus()
         +getRoomDetails()
     }
-    class API {
-        +url : String
-        -token : String
+    class API{
+        +String url
+        -String token
         +fetchRoomData()
         +fetchReservationData()
     }
-    class Verification {
-        -userID : String
-        +passportPhoto : Image
-        +selfiePhoto : Image
-        +verificationStatus : String
+    class Verification{
+        -String userID
+        +Image passportPhoto
+        +Image selfiePhoto
+        +String verificationStatus
         +uploadPassport()
         +uploadSelfiePhoto()
         +updateVerificationStatus()
     }
-    User "1" --> "many" Reservation : makes
-    Reservation "1" --> "1" Room : reserves
-    Reservation "many" --> "1" API : uses
-    Reservation "1" --> "many" Verification : requires
-    Room "many" --> "many" Verification : linked to
 ```
-
