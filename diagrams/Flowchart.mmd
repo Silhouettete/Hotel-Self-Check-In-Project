@@ -1,0 +1,27 @@
+flowchart TD
+
+A[Enter Home Page] --> B[Select Self Check-in]
+
+B --> C{Do you have an account?}
+
+C -->|Yes| D[Log in]
+C -->|No| E[Choose Check-in Method]
+
+E --> F[Enter Email or Reservation ID]
+
+D --> G[Fetch Reservation Data]
+F --> G
+
+G --> H[Display Reservation Details]
+
+H --> I[Select Room]
+
+I --> J[Fill Check-in Form]
+
+J --> K[Upload ID / Identity Verification]
+
+K --> L[Confirm Check-in]
+
+L --> M[Update Reservation Status to Checked-in]
+
+M --> N[Show Check-in Confirmation]
