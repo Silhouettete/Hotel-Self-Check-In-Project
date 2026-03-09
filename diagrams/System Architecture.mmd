@@ -1,0 +1,59 @@
+classDiagram
+
+class User {
+  +String Name
+  +int PhoneNumber
+  +String EmailAddress
+  +LogIn()
+  +CheckIn()
+  +bookTheRoom()
+}
+
+class Reservation {
+  +String bookingID
+  +String roomName
+  +int roomNumber
+  +int numberOfGuest
+  +String status
+  +String paymentStatus
+  +checkInReservation()
+  +cancelReservation()
+  +updateStatus()
+  +validateCheckIn()
+  +printReceipt()
+}
+
+class Room {
+  +String roomID
+  +String roomType
+  +int guestNumber
+  +String availabilityStatus
+  +double price
+  +String bookingID
+  +bookRoom()
+  +updateAvailabilityStatus()
+  +getRoomDetails()
+}
+
+class API {
+  +String url
+  -String token
+  +fetchRoomData()
+  +fetchReservationData()
+}
+
+class Verification {
+  -String userID
+  +String passportPhoto
+  +String selfiePhoto
+  +String verificationStatus
+  +uploadPassport()
+  +uploadSelfiePhoto()
+  +updateVerificationStatus()
+}
+
+User "1" --> "*" Reservation : makes
+Reservation "1" --> "1" Room : reserves
+Reservation "*" --> "1" API : uses
+Reservation "1" --> "*" Verification : requires
+Room "*" --> "*" Verification : linked to
