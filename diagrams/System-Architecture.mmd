@@ -1,1 +1,61 @@
+```mermaid
+classDiagram
+    class User {
+        +Name : String
+        +PhoneNumber : int
+        +EmailAddress : String
+        +LogIn()
+        +CheckIn()
+        +bookTheRoom()
+    }
+
+    class Reservation {
+        +bookingID : String
+        +roomName : String
+        +roomNumber : int
+        +numberofGuest : int
+        +status : String
+        +paymentStatus : String
+        +checkInReservation()
+        +cancelReservation()
+        +updateStatus()
+        +validateCheckIn()
+        +printReceipt()
+    }
+
+    class Room {
+        +roomID : String
+        +roomType : String
+        +guestNumber : int
+        +availabilityStatus : String
+        +price : double
+        +bookingID : String
+        +bookRoom()
+        +updateAvailabilityStatus()
+        +getRoomDetails()
+    }
+
+    class API {
+        +url : String
+        -token : String
+        +fetchRoomData()
+        +fetchReservationData()
+    }
+
+    class Verification {
+        -userID : String
+        +passportPhoto : Image
+        +selfiePhoto : Image
+        +verificationStatus : String
+        +uploadPassport()
+        +uploadSelfiePhoto()
+        +updateVerificationStatus()
+    }
+
+    User "1.." --> "1..*" Reservation : makes
+    Reservation "1" --> "1" Room : reserves
+    Reservation "1..*" --> "1." API : uses
+    Reservation "1" --> "1.*" Verification : requires
+    Room "1.*" --> "1.*" Verification : linked to
+```
 
