@@ -1,0 +1,49 @@
+flowchart TD
+    User([Guest])
+    Admin([Hotel System])
+
+    subgraph CheckIn["Check-In Process"]
+        A[Enter Homepage]
+        B{Already Logged In?}
+        C{Choose Check-in Method}
+        D[Enter Booking ID]
+        E[Login with Email]
+        F[View Reservations]
+        G[Select Room]
+    end
+
+    subgraph Verification["Guest Verification"]
+        H[Fill Check-in Form]
+        I[Enter Full Name / Phone / Email]
+        J[Upload Passport Photo]
+        K[Take Live Selfie]
+        L[Enter Credit Card Info]
+    end
+
+    subgraph Completion["Confirmation"]
+        M[Validate Check-in]
+        N[Update Booking Status]
+        O[Generate Confirmation Slip]
+        P[Send Email Confirmation]
+    end
+
+    User --> A
+    A --> B
+    B -- Yes --> F
+    B -- No --> C
+    C -- Booking ID --> D
+    C -- Email --> E
+    D --> F
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+    J --> K
+    K --> L
+    L --> M
+    M --> N
+    N --> O
+    O --> P
+    P --> Admin
+    N --> Admin
