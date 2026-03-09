@@ -8,7 +8,6 @@ classDiagram
         +CheckIn()
         +bookTheRoom()
     }
-
     class Reservation {
         +bookingID : String
         +roomName : String
@@ -22,7 +21,6 @@ classDiagram
         +validateCheckIn()
         +printReceipt()
     }
-
     class Room {
         +roomID : String
         +roomType : String
@@ -34,14 +32,12 @@ classDiagram
         +updateAvailabilityStatus()
         +getRoomDetails()
     }
-
     class API {
         +url : String
         -token : String
         +fetchRoomData()
         +fetchReservationData()
     }
-
     class Verification {
         -userID : String
         +passportPhoto : Image
@@ -51,11 +47,10 @@ classDiagram
         +uploadSelfiePhoto()
         +updateVerificationStatus()
     }
-
-    User "1.." --> "1..*" Reservation : makes
+    User "1" --> "many" Reservation : makes
     Reservation "1" --> "1" Room : reserves
-    Reservation "1..*" --> "1." API : uses
-    Reservation "1" --> "1.*" Verification : requires
-    Room "1.*" --> "1.*" Verification : linked to
+    Reservation "many" --> "1" API : uses
+    Reservation "1" --> "many" Verification : requires
+    Room "many" --> "many" Verification : linked to
 ```
 
